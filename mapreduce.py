@@ -32,6 +32,19 @@ cityMapFun = Code("""
 """ % citys_json)  
 
 # month-news_count
+timeMapFun = Code("""    
+    function() {    
+        var keywords = this.raw_key_words.split(/[\\s,]+/); // 假设raw_key_words是空格或逗号分隔的   
+        var date = new Date(Number(this.ctime) * 1000);
+        var year = date.getUTCFullYear();  
+        var month = date.getMonth();
+        const quarter = Math.ceil((month + 1) / 3);  
+        var formattedTimeCustom = `${year}-${quarter}`;
+        emit(formattedTimeCustom, 1);   
+    }  
+""")  
+
+# time-news_count
 monthMapFun = Code("""    
     function() {    
         var keywords = this.raw_key_words.split(/[\\s,]+/); // 假设raw_key_words是空格或逗号分隔的   
@@ -44,7 +57,7 @@ monthMapFun = Code("""
             }        
         }  
     }  
-""")  
+""")
 
 # cate-news_count
 cateMapFun = Code("function (){"
@@ -59,11 +72,14 @@ reducefun = Code("""
 
 # city_result = col.map_reduce(cityMapFun, reducefun, "city_results")  
 # month_result=col.map_reduce(monthMapFun,reducefun,"month_results")
-cate_resule=col.map_reduce(cateMapFun,reducefun,"cate_results")
+time_result=col.map_reduce(timeMapFun,reducefun,"time_results")
+# cate_resule=col.map_reduce(cateMapFun,reducefun,"cate_results")
 
-for doc in db.city_results.find():
-    print(doc)
-for doc in db.month_results.find():
-    print(doc)
-for doc in db.cate_results.find():
+# for doc in db.city_results.find():
+#     print(doc)
+# for doc in db.month_results.find():
+#     print(doc)
+# for doc in db.cate_results.find():
+#     print(doc)
+for doc in db.time_results.find():
     print(doc)

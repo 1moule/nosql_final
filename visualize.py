@@ -2,6 +2,7 @@ import pymongo
 import matplotlib.pyplot as plt  
 from matplotlib.font_manager import FontProperties
 import numpy as np 
+from datetime import datetime  
 
 # connect to mongodb
 client = pymongo.MongoClient('mongodb://192.168.1.200:27018/?directConnection=true&appName=mongosh+2.2.9')
@@ -141,5 +142,17 @@ y_label='News Count'
 title="News Count by City"
 drawManyBar(city_parts,value_parts,x_label,y_label,title)
 
-
+# time-news
+x=[]
+y=[]
+for doc in db.time_results.find().sort("_id"):
+    quarter_name=["春","夏","秋","冬"]
+    x.append(doc['_id'][:-1]+quarter_name[int(doc['_id'][-1])-1])
+    y.append(doc['value'])
+print(x)
+x_label='Quarter'
+y_label='News Count'
+title="News Count by Quarter"
+drawBar(x,y,x_label,y_label,title)
+    
 
