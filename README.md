@@ -2,7 +2,7 @@
 
 1. 新建目录以及配置文件存放data、log、conf
 
-   ![image](./pictures/Screenshot from 2024-06-19 21-22-35.png)
+   ![image](../pictures/Screenshot from 2024-06-19 21-22-35.png)
 
 2. 在data目录以及log目录下创建3个端口命名的文件夹，存放对应节点的data、log；在conf中创建3个配置文件用于启动3个节点
 
