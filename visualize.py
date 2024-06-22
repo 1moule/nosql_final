@@ -28,13 +28,15 @@ def drawBar(x_data,y_data,x_label,y_label,title):
     # 设置图表标题和轴标签  
     plt.title(title,**TNR)  
     plt.xlabel(x_label,**TNR)  
-    plt.ylabel(y_label,**TNR)  
+    plt.ylabel(y_label,**TNR)
+    plt.plot(x_data,y_data,'o-',zorder=20,color = '#006400',label="CNN-RLSTM")#o-:圆形  
     # 显示图表  
     plt.tight_layout()
+    plt.savefig(x_label)
     plt.show()
 
 def drawManyBar(x_lists,y_lists,x_label,y_label,title):
-    fig, axs = plt.subplots(nrows=3, ncols=4, figsize=(10, 5)) 
+    fig, axs = plt.subplots(nrows=3, ncols=4, figsize=(19.2, 10.8), dpi=100) 
     axs = axs.flatten()
     fig.suptitle(title,**TNR)
     for ax, (x_list, y_list) in zip(axs, zip(x_lists, y_lists)):  
@@ -54,6 +56,7 @@ def drawManyBar(x_lists,y_lists,x_label,y_label,title):
     # 显示画布  
     plt.subplots_adjust(wspace=0.15, hspace=0.6)
     plt.subplots_adjust(bottom=0.1,top=0.95)
+    plt.savefig(x_label)
     plt.show()
 
 def drawPie(x_data,y_data,title):
@@ -72,6 +75,7 @@ def drawPie(x_data,y_data,title):
     # 设置图表标题
     plt.title(title,**TNR)
     plt.legend(bbox_to_anchor=(0,1.05))
+    plt.savefig(x_label)
     # 显示图表
     plt.show()
 
